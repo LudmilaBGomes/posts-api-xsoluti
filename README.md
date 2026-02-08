@@ -227,6 +227,8 @@ A aplicação segue a seguinte arquitetura:
   "react": "19.2.3",
   "@reduxjs/toolkit": "^2.11.2",
   "redux-saga": "^1.4.2",
-  "typescript": "^5"
+  "typescript": "^5",
+  "styled-components": "^6.3.8",
+  "tailwindcss": "^4.1.18"
 }
 ```

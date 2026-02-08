@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
 
 import PostForm from "@/components/PostForm/PostForm";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchPostByIdRequest, updatePostRequest } from "@/store/posts/actions";
+import * as S from "./styles";
 
 export default function EditPostPage() {
   const params = useParams();
@@ -32,22 +32,22 @@ export default function EditPostPage() {
   }
 
   if (loading && !currentPost) {
-    return <div className="p-6 text-gray-500">Carregando post...</div>;
+    return <S.Loading>Carregando post...</S.Loading>;
   }
 
   if (error || !currentPost) {
     return (
-      <div className="p-6 text-red-500">{error ?? "Post não encontrado"}</div>
+      <S.Error>{error ?? "Post não encontrado"}</S.Error>
     );
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <Link href="/posts" className="text-blue-600 hover:underline text-sm">
+    <S.Container>
+      <S.BackLink href="/posts">
         Voltar
-      </Link>
+      </S.BackLink>
 
-      <h1 className="text-2xl font-bold mt-4 mb-6">Editar post</h1>
+      <S.Title>Editar post</S.Title>
 
       <PostForm
         initialData={currentPost}
@@ -55,6 +55,6 @@ export default function EditPostPage() {
         loading={loading}
         error={error}
       />
-    </div>
+    </S.Container>
   );
 }

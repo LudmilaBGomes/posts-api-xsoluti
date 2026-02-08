@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { getPosts } from "@/services/postsApi";
 import { Post } from "@/types/posts";
 import { PostCard } from "@/components/PostCard/PostCard";
+import * as S from "./styles";
 
 export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,32 +27,29 @@ export default function PostsPage() {
   }, []);
 
   if (loading) {
-    return <div className="p-6 text-gray-500">Carregando posts...</div>;
+    return <S.Loading>Carregando posts...</S.Loading>;
   }
 
   if (error) {
-    return <div className="p-6 text-red-500">{error}</div>;
+    return <S.Error>{error}</S.Error>;
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2x1 font-bold">Post</h1>
-        <Link
-          href="/posts/new"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
+    <S.Container>
+      <S.Header>
+        <S.Title>Post</S.Title>
+        <S.NewPostLink href="/posts/new">
           Novo post
-        </Link>
-      </div>
+        </S.NewPostLink>
+      </S.Header>
 
-      <ul className="space-y-4">
+      <S.PostsList>
         {posts.map((post) => (
-          <li key={post.id}>
+          <S.PostItem key={post.id}>
             <PostCard post={post} />
-          </li>
+          </S.PostItem>
         ))}
-      </ul>
-    </div>
+      </S.PostsList>
+    </S.Container>
   );
 }

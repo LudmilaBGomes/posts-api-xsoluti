@@ -1,7 +1,6 @@
 "use client";
 
 import { Post } from "@/types/posts";
-import Link from "next/link";
 import * as S from "./styles";
 
 type Props = {
@@ -15,12 +14,9 @@ export function PostCard({ post }: Props) {
       <S.Body>{post.body}</S.Body>
 
       <S.Footer>
-        <Link
-          href={`/posts/${post.id}/details`}
-          className="text-sm font medium text-blue-600 hover:underline"
-        >
+        <S.DetailLink href={`/posts/${post.id}/details`}>
           Ver detalhes
-        </Link>
+        </S.DetailLink>
       </S.Footer>
     </S.Card>
   );

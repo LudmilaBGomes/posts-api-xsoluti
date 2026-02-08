@@ -1,11 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import PostForm from "@/components/PostForm/PostForm";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { createPostRequest } from "@/store/posts/actions";
+import * as S from "./styles";
 
 export default function NewPostPage() {
   const router = useRouter();
@@ -19,14 +19,12 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <Link href="/posts" className="text-blue-600 hover:underline text-sm">
+    <S.Container>
+      <S.BackLink href="/posts">
         Voltar
-      </Link>
-
-      <h1 className="text-2xl font-bold mt-4 mb-6">Novo post</h1>
+      </S.BackLink>
 
       <PostForm onSubmit={handleSubmit} loading={loading} error={error} />
-    </div>
+    </S.Container>
   );
 }

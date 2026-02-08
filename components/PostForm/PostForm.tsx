@@ -47,37 +47,51 @@ export default function PostForm({
   }
 
   return (
-    <S.Form onSubmit={handleSubmit}>
-      <h2 className="text-xl font-bold">
-        {isEditMode ? "Editar Post" : "Criar Post"}
-      </h2>
+    <S.FormCard>
+      <S.FormTitle>{isEditMode ? "Editar Post" : "Criar Post"}</S.FormTitle>
 
       {(localError || error) && (
-        <p className="text-red-500">{localError || error}</p>
+        <S.ErrorMessage>{localError || error}</S.ErrorMessage>
       )}
 
-      <S.Input
-        placeholder="Título"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <S.Form onSubmit={handleSubmit}>
+        <S.FormGroup>
+          <S.Label htmlFor="title">Título *</S.Label>
+          <S.Input
+            id="title"
+            placeholder="Digite o título do post"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </S.FormGroup>
 
-      <S.TextArea
-        placeholder="Conteúdo"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
+        <S.FormGroup>
+          <S.Label htmlFor="body">Conteúdo *</S.Label>
+          <S.TextArea
+            id="body"
+            placeholder="Digite o conteúdo do post"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+        </S.FormGroup>
 
-      <S.Input
-        type="number"
-        placeholder="User ID"
-        value={userId}
-        onChange={(e) => setUserId(Number(e.target.value))}
-      />
+        <S.FormGroup>
+          <S.Label htmlFor="userId">ID do Usuário *</S.Label>
+          <S.Input
+            id="userId"
+            type="number"
+            placeholder="Digite o ID do usuário"
+            value={userId}
+            onChange={(e) => setUserId(Number(e.target.value))}
+          />
+        </S.FormGroup>
 
-      <S.Button type="submit" disabled={loading}>
-        {loading ? "Salvando..." : "Salvar"}
-      </S.Button>
-    </S.Form>
+        <S.ButtonGroup>
+          <S.Button type="submit" disabled={loading}>
+            {loading ? "Salvando..." : "Salvar"}
+          </S.Button>
+        </S.ButtonGroup>
+      </S.Form>
+    </S.FormCard>
   );
 }

@@ -1,27 +1,49 @@
 import styled from "styled-components";
+import Link from "next/link";
 
-export const Card = styled.article`
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 20px;
+export const Card = styled.article.attrs({
+  className: `
+    bg-white 
+    rounded-xl 
+    border border-gray-200 
+    p-5 
+    shadow-sm 
+    hover:shadow-md 
+    transition-shadow
+  `,
+})``;
 
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease-in-out;
+export const Title = styled.h2.attrs({
+  className: `
+    text-lg 
+    font-semibold 
+    text-gray-800 
+    mb-2
+  `,
+})``;
 
-  &:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-`;
+export const Body = styled.article.attrs({
+  className: `
+    text-gray-600 
+    text-sm 
+    mb-4 
+    line 
+    clamp-3
+  `,
+})``;
 
-export const Title = styled.h2`
-  @apply text-lg font-semibold text-gray-800 mb-2;
-`;
+export const Footer = styled.article.attrs({
+  className: `
+    flex 
+    justify-end
+  `,
+})``;
 
-export const Body = styled.p`
-  @apply text-gray-600 text-sm mb-4 line clamp-3;
-`;
-
-export const Footer = styled.footer`
-  @apply flex justify-end;
-`;
+export const DetailLink = styled(Link).attrs({
+  className: `
+    text-sm 
+    font-medium 
+    text-blue-600 
+    hover:underline
+  `,
+})``;

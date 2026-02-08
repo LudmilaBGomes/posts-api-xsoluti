@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchPostByIdRequest, deletePostRequest } from "@/store/posts/actions";
+import * as S from "./styles";
 
 export default function PostDetailsPage() {
   const params = useParams();
@@ -34,40 +34,34 @@ export default function PostDetailsPage() {
   }
 
   if (loading) {
-    return <div className="p-6 text-gray-500">Carregando...</div>;
+    return <S.Loading>Carregando...</S.Loading>;
   }
 
   if (error || !currentPost) {
     return (
-      <div className="p-6 text-red-500">{error ?? "Post não encontrado"}</div>
+      <S.Error>{error ?? "Post não encontrado"}</S.Error>
     );
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <Link href="/posts" className="text-blue-600 hover:underline text-sm">
+    <S.Container>
+      <S.BackLink href="/posts">
         Voltar
-      </Link>
+      </S.BackLink>
 
-      <h1 className="text-2xl font-bold mt-4 mb-2">{currentPost.title}</h1>
+      <S.Title>{currentPost.title}</S.Title>
 
-      <p className="text-gray-700 mb-6">{currentPost.body}</p>
+      <S.Body>{currentPost.body}</S.Body>
 
-      <div className="flex gap-3">
-        <Link
-          href={`/posts/${currentPost.id}/edit`}
-          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
-        >
+      <S.Actions>
+        <S.EditLink href={`/posts/${currentPost.id}/edit`}>
           Editar
-        </Link>
+        </S.EditLink>
 
-        <button
-          onClick={handleDelete}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-        >
+        <S.DeleteButton onClick={handleDelete}>
           Excluir
-        </button>
-      </div>
-    </div>
+        </S.DeleteButton>
+      </S.Actions>
+    </S.Container>
   );
 }
