@@ -46,7 +46,7 @@ export default function PostDetailsPage() {
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <Link href="/posts" className="text-blue-600 hover:underline text-sm">
-        ← Voltar
+        Voltar
       </Link>
 
       <h1 className="text-2xl font-bold mt-4 mb-2">{currentPost.title}</h1>

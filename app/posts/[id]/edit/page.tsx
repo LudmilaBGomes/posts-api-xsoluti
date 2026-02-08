@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-import PostForm from "@/components/PostForm";
+import PostForm from "@/components/PostForm/PostForm";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchPostByIdRequest, updatePostRequest } from "@/store/posts/actions";
 
@@ -44,7 +44,7 @@ export default function EditPostPage() {
   return (
     <div className="p-6 max-w-2xl mx-auto">
       <Link href="/posts" className="text-blue-600 hover:underline text-sm">
-        ← Voltar
+        Voltar
       </Link>
 
       <h1 className="text-2xl font-bold mt-4 mb-6">Editar post</h1>

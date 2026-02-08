@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getPosts } from "@/services/postsApi";
 import { Post } from "@/types/posts";
-import { PostCard } from "@/components/PostCard";
+import { PostCard } from "@/components/PostCard/PostCard";
 
 export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
