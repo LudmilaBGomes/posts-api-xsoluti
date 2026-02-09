@@ -1,5 +1,5 @@
 import { PostsActionTypes } from './types';
-import { Post } from "@/app/api/posts/[id]/cache";
+import { Post } from './types';
 
 export const fetchPostsRequest = () => ({
   type: PostsActionTypes.FETCH_POSTS_REQUEST,

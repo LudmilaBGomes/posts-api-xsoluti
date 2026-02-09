@@ -1,6 +1,6 @@
 "use client";
 
-import { Post } from "@/types/posts";
+import { Post } from "@/store/posts/types";
 import * as S from "./styles";
 
 type Props = {

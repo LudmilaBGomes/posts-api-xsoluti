@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
-import {
-  loadPostsIfNeeded,
-  getPostsCache,
-  setPostsCache,
-  Post,
-} from "./[id]/cache";
-
+import {loadPostsIfNeeded, getPostsCache, setPostsCache} from "./[id]/cache";
+import { Post } from "@/store/posts/types";
 export async function GET() {
   try {
     const posts = await loadPostsIfNeeded();
@@ -21,7 +16,9 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, body: content, userId } = body;
+    const title = body.title;
+    const content = body.body;
+    const userId = body.userId;
 
     if (!title || !content || !userId) {
       return NextResponse.json(
@@ -34,9 +31,9 @@ export async function POST(request: Request) {
 
     const newPost: Post = {
       id: Date.now(),
-      title,
+      title: title,
       body: content,
-      userId,
+      userId: userId,
     };
 
     const updatedPosts = [newPost, ...posts];

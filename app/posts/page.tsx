@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPosts } from "@/services/postsApi";
-import { Post } from "@/types/posts";
+import { Post } from "@/store/posts/types";
 import { PostCard } from "@/components/PostCard/PostCard";
 import * as S from "./styles";
 

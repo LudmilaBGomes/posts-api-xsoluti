@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Post } from "@/types/posts";
+import { Post } from  "@/store/posts/types";
 import * as S from "./styles";
 
 type PostFormData = {
@@ -17,12 +17,8 @@ type PostFormProps = {
   error?: string | null;
 };
 
-export default function PostForm({
-  initialData,
-  onSubmit,
-  loading,
-  error,
-}: PostFormProps) {
+export default function PostForm({initialData, onSubmit, loading, error}: PostFormProps) {
+  
   const [title, setTitle] = useState(initialData?.title ?? "");
   const [body, setBody] = useState(initialData?.body ?? "");
   const [userId, setUserId] = useState<number>(initialData?.userId ?? 1);

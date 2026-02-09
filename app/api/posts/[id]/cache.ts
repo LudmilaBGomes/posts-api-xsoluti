@@ -1,11 +1,5 @@
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
-
-export type Post = {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-};
+import { Post } from "@/store/posts/types";
 
 let postsCache: Post[] = [];
 

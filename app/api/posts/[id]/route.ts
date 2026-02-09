@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
-import { getPostsCache, setPostsCache, Post, loadPostsIfNeeded } from "./cache";
+import { getPostsCache, setPostsCache, loadPostsIfNeeded } from "./cache";
 
 type Params = {
   params: Promise<{ id: string }>;
 };
 
-export async function GET(
-  request: Request,
-  context: { params: Promise<{ id: string }> },
-) {
+export async function GET(request: Request,  paramsObj: Params) {
   try {
-    const { id } = await context.params;
-    const postId = Number(id);
+    const param = await paramsObj.params;
+    const postId = Number(param.id);
     const posts = await loadPostsIfNeeded();
     const post = posts.find((post) => post.id === postId);
 
@@ -52,7 +49,7 @@ export async function PUT(request: Request, paramsObj: Params) {
 
     if (postIndex === -1) {
       return NextResponse.json(
-        { error: "Post não foi encontrador" },
+        { error: "Post não foi encontrado" },
         { status: 404 },
       );
     }
