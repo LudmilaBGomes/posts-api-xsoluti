@@ -11,7 +11,10 @@ export default function NewPostPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { loading, error } = useAppSelector((state) => state.posts);
+  const postsState = useAppSelector((state) => state.posts);
+  const loading = postsState.loading;
+  const error = postsState.error;
+
 
   function handleSubmit(post: { title: string; body: string; userId: number }) {
     dispatch(createPostRequest(post));

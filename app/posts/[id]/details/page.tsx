@@ -14,9 +14,13 @@ export default function PostDetailsPage() {
 
   const postId = Number(params.id);
 
-  const { currentPost, loading, error } = useAppSelector(
-    (state) => state.posts,
-  );
+  const postsState = useAppSelector((state) => state.posts);
+  const currentPost = postsState.currentPost;
+  const loading = postsState.loading;
+  const error = postsState.error;
+
+
+  
 
   useEffect(() => {
     if (!isNaN(postId)) {

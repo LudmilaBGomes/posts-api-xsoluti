@@ -15,12 +15,14 @@ export default function EditPostPage() {
 
   const postId = Number(params.id);
 
-  const { currentPost, loading, error } = useAppSelector(
-    (state) => state.posts,
-  );
+ const postsState = useAppSelector((state) => state.posts);
+  const currentPost = postsState.currentPost;
+  const loading = postsState.loading;
+  const error = postsState.error;
+
 
   useEffect(() => {
-    console.log("fething...", postId, loading, error);
+   
     if (!isNaN(postId)) {
       dispatch(fetchPostByIdRequest(postId));
     }
